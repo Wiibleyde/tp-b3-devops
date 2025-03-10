@@ -36,6 +36,8 @@ or
 cp .env.sample .env
 ```
 
+*If the .env file is not present, the server will listen on port 8080 by default.*
+
 ### 3. Build the project
 
 ```bash
