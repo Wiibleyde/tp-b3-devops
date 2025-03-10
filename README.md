@@ -23,21 +23,6 @@ This project is a simple HTTP server that returns the header of the request in J
 ```bash
 git clone https://github.com/Wiibleyde/tp1-b3-devops.git
 ```
-
-### 2. Fill the .env file
-
-```bash
-echo "PING_LISTEN_PORT=8080" > .env
-```
-
-or
-
-```bash
-cp .env.sample .env
-```
-
-*If the .env file is not present, the server will listen on port 8080 by default.*
-
 ### 3. Build the project
 
 ```bash
@@ -47,13 +32,13 @@ cargo build --release
 Alternatively, you can run the project in debug mode:
 
 ```bash
-cargo run
+export "PING_LISTEN_PORT=8000" && cargo run
 ```
 
 ### 4. Run the project
 
 ```bash
-./target/release/TP1
+export "PING_LISTEN_PORT=8001" && ./target/release/TP1
 ```
 
 ### 5. Test the project
