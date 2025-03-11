@@ -23,8 +23,7 @@ fn main() {
                     .write_all(response.as_bytes())
                     .expect("Erreur d'écriture dans le stream");
             } else {
-                let headers_json = format_headers_as_json(&headers);
-                let response = format!("HTTP/1.1 404 NOT FOUND\r\nContent-Length: {}\r\n\r\n{}", headers_json.len(), headers_json);
+                let response = format!("HTTP/1.1 404 NOT FOUND\r\nContent-Length: 0\r\n\r\n");
                 stream
                     .write_all(response.as_bytes())
                     .expect("Erreur d'écriture dans le stream");
