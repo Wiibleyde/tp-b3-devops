@@ -13,4 +13,10 @@ COPY . .
 RUN cargo build --release && \
     rm -rf src Cargo.lock Cargo.toml target/debug
 
+RUN addgroup -S apigroup && adduser -S apiuser -G apigroup
+
+RUN chown -R apiuser:apigroup /app
+
+USER apiuser
+
 CMD ["./target/release/TP1"]

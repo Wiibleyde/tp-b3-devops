@@ -6,16 +6,15 @@ COPY Cargo.toml Cargo.lock ./
 
 RUN mkdir -p src && echo "fn main() { println!(\"Hello, world!\"); }" > src/main.rs
 
-RUN cargo fetch
+RUN cargo fetch --target x86_64-unknown-linux-musl
 
 COPY . .
 
-RUN cargo build --release
+RUN cargo build --release --target x86_64-unknown-linux-musl && \
+    strip target/x86_64-unknown-linux-musl/release/TP1
 
-FROM alpine:3.18
+FROM scratch
 
-WORKDIR /app
+COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/TP1 /TP1
 
-COPY --from=builder /app/target/release/TP1 ./TP1
-
-CMD ["./TP1"]
+CMD ["/TP1"]

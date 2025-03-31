@@ -5,5 +5,8 @@ target/
 .gitignore
 README.md
 
+*.Dockerfile
+.dockerignore
+
 .env
 .env.sample
