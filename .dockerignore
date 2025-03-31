@@ -1,0 +1,9 @@
+.git/
+.vscode/
+
+target/
+.gitignore
+README.md
+
+.env
+.env.sample
