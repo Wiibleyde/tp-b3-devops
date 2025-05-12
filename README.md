@@ -61,6 +61,30 @@ This project was made for the B3 DevOps course at Ynov Campus.
 
 ## Analysis 
 
+One stage Dockerfile scan
+```bash
+~ trivy image wiibleyde/tp-devops:oneStage
+2025-05-12T09:48:05+02:00	INFO	[vuln] Vulnerability scanning is enabled
+2025-05-12T09:48:05+02:00	INFO	[secret] Secret scanning is enabled
+2025-05-12T09:48:05+02:00	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2025-05-12T09:48:05+02:00	INFO	[secret] Please see also https://trivy.dev/v0.61/docs/scanner/secret#recommendation for faster secret detection
+2025-05-12T09:48:08+02:00	INFO	Detected OS	family="alpine" version="3.21.3"
+2025-05-12T09:48:08+02:00	INFO	[alpine] Detecting vulnerabilities...	os_version="3.21" repository="3.21" pkg_num=28
+2025-05-12T09:48:08+02:00	INFO	Number of language-specific files	num=0
+
+Report Summary
+
+┌──────────────────────────────────────────────┬────────┬─────────────────┬─────────┐
+│                    Target                    │  Type  │ Vulnerabilities │ Secrets │
+├──────────────────────────────────────────────┼────────┼─────────────────┼─────────┤
+│ wiibleyde/tp-devops:oneStage (alpine 3.21.3) │ alpine │        0        │    -    │
+└──────────────────────────────────────────────┴────────┴─────────────────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+```
+
+Multi stage Dockerfile scan
 ```bash
 ~ trivy image wiibleyde/tp-devops:latest
 2025-05-12T09:36:07+02:00	INFO	[vuln] Vulnerability scanning is enabled
