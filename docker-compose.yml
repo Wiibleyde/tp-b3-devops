@@ -1,0 +1,28 @@
+services:
+  tp-devops:
+    build:
+      context: .
+      dockerfile: twoStep.Dockerfile
+    image: wiibleyde/tp-devops:latest
+    environment:
+      PING_LISTEN_PORT: 8080
+    deploy:
+      replicas: 4
+    networks:
+      - proxy-tier
+
+  tp-devops-proxy:
+    image: nginx:latest
+    container_name: tp-devops-proxy
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - tp-devops
+    networks:
+      - proxy-tier
+
+networks:
+  proxy-tier:
+    driver: bridge

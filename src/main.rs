@@ -7,6 +7,8 @@ fn main() {
     let port = env::var("PING_LISTEN_PORT").unwrap_or_else(|_| "8080".to_string());
     let listener = TcpListener::bind(format!("0.0.0.0:{}", port)).expect("Impossible de démarrer le serveur");
 
+    let hostname = get_hostname();
+
     for stream in listener.incoming() {
         let mut stream = stream.expect("Erreur lors de l'acceptation de la connexion");
 
@@ -18,6 +20,7 @@ fn main() {
 
             if request.starts_with("GET /ping ") {
                 let headers_json = format_headers_as_json(&headers);
+                println!("Hostname: {}", hostname);
                 let response = format!("HTTP/1.1 200 OK\r\nContent-Length: {}\r\n\r\n{}", headers_json.len(), headers_json);
                 stream
                     .write_all(response.as_bytes())
@@ -49,6 +52,13 @@ fn get_headers(request: &str) -> HashMap<String, String> {
     }
 
     headers
+}
+
+fn get_hostname() -> String {
+    std::fs::read_to_string("/etc/hostname")
+        .unwrap_or_else(|_| "unknown".to_string())
+        .trim()
+        .to_string()
 }
 
 fn format_headers_as_json(headers: &HashMap<String, String>) -> String {
