@@ -58,3 +58,28 @@ This should return the header of your request (in JSON format).
 ## Context
 
 This project was made for the B3 DevOps course at Ynov Campus.
+
+## Analysis 
+
+```bash
+~ trivy image wiibleyde/tp-devops:latest
+2025-05-12T09:36:07+02:00	INFO	[vuln] Vulnerability scanning is enabled
+2025-05-12T09:36:07+02:00	INFO	[secret] Secret scanning is enabled
+2025-05-12T09:36:07+02:00	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2025-05-12T09:36:07+02:00	INFO	[secret] Please see also https://trivy.dev/v0.61/docs/scanner/secret#recommendation for faster secret detection
+2025-05-12T09:36:07+02:00	INFO	Number of language-specific files	num=0
+2025-05-12T09:36:07+02:00	WARN	[report] Supported files for scanner(s) not found.	scanners=[vuln]
+2025-05-12T09:36:07+02:00	INFO	[report] No issues detected with scanner(s).	scanners=[secret]
+
+Report Summary
+
+┌────────┬──────┬─────────────────┬─────────┐
+│ Target │ Type │ Vulnerabilities │ Secrets │
+├────────┼──────┼─────────────────┼─────────┤
+│   -    │  -   │        -        │    -    │
+└────────┴──────┴─────────────────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+```
